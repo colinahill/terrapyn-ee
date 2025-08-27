@@ -1,0 +1,26 @@
+name: Publish to PyPI
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish-pypi:
+    # Skip this job if it's a pre-release
+    if: github.event.release.prerelease == false
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          enable-cache: true
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+      - name: Build package
+        run: make build
+      - name: Publish to PyPI
+        run: uv publish --index pypi
