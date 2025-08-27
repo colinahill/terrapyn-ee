@@ -42,18 +42,6 @@ exclude = [
 [tool.hatch.version]
 path = "pyproject.toml"
 
-[[tool.uv.index]]
-name = "pypi"
-url = "https://pypi.org/simple/"
-publish-url = "https://upload.pypi.org/legacy/"
-explicit = true
-
-[[tool.uv.index]]
-name = "testpypi"
-url = "https://test.pypi.org/simple/"
-publish-url = "https://test.pypi.org/legacy/"
-explicit = true
-
 [tool.ruff]
 line-length = 120
 target-version = "py312"
